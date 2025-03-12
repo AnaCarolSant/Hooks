@@ -1,10 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    console.log("Rodou dentro do useEffect")
+  }, [])
+
+  useEffect(() => {
+    console.log("Rodou, por que o count atualizou", count)
+  }, [count])
+
+
+
+  const handleIncrementCounter = () => {
+    setCount(count + 1)
+  }
+
+  const handleDecrementCounter = () => {
+    if (count === 0) return;
+    setCount(count - 1)
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>Contador: {count}</Text>
+      <Button title='Incrementar' onPress={handleIncrementCounter} />
+      <Button title='Decrementar' onPress={handleDecrementCounter} />
       <StatusBar style="auto" />
     </View>
   );
@@ -16,5 +40,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
+
