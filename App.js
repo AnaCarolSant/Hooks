@@ -4,6 +4,8 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
 
+
+  //como usar função assincrona no use effect
   const [count, setCount] = useState(0)
   useEffect(() => {
     console.log("Rodou dentro do useEffect")
